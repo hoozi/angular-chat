@@ -1,0 +1,23 @@
+{
+  "name": "angular-chat",
+  "version": "0.0.1",
+  "homepage": "https://github.com/hoozi/angular-chat",
+  "authors": [
+    "hoozi <287036406@qq.com>"
+  ],
+  "description": "angularjs+node+mongodb+socket.io",
+  "keywords": [
+    "web-chat"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0"
+  }
+}
