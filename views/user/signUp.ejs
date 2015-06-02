@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>注册</title>
+</head>
+<body ng-app="signUp">
+	<div class="container signUp-container">
+		<form name="signUpForm" action="/user/sign_in" method="post" ng-controller="signUpForm" novalidate>
+			<div class="form-group">
+				<label>用户名</label>
+				<input type="text" 
+					name="login_name" 
+					placeholder="请输入用户名"
+					ng-model="login_name"
+					ng-trim="true"
+					ng-minlength="6"
+					ng-pattern="/[0-9a-zA-Z_]/g"
+					required/>
+				<span class="validator-error" ng-show="signUpForm.login_name.$error.required">用户名不能为空</span>
+				<span class="validator-error" ng-show="signUpForm.login_name.$error.minlength">用户名至少需要6位长度</span>
+				<span class="validator-error" ng-show="signUpForm.login_name.$error.pattern">用户名只能由数字、字母下划线组成</span>
+			</div>
+			<div class="form-group">
+				<label>性别</label>
+				<input type="radio" name="sex" id="" value="1"/>男
+				<input type="radio" name="sex" id="" value="0"/>女
+			</div>
+			<div class="form-group">
+				<label>密码</label>
+				<input 
+					type="password"
+					name="password" 
+					placeholder="请输入密码"
+					ng-trim="true"
+					ng-model="password"
+					ng-minlength="6"
+					ng-pattern="/[0-9a-zA-Z\-_]/g"
+					required/>
+				<span class="validator-error" ng-show="signUpForm.password.$error.required">密码不能为空</span>
+				<span class="validator-error" ng-show="signUpForm.password.$error.minlength">密码至少需要6位长度</span>
+				<span class="validator-error" ng-show="signUpForm.password.$error.pattern">密码只能由数字、字母下划线组成</span>
+			</div>
+			<div class="form-group">
+				<label>确认密码</label>
+				<input 
+					type="password"
+					name="confirm_password"
+					placeholder="请再输入一次密码"
+					ng-trim="true"
+					ng-model="confirm_password"
+					ng-minlength="6"
+					ng-pattern="/[0-9a-zA-Z\-_]/g"
+					required/>
+				<span class="validator-error" ng-show="signUpForm.confirm_password.$error.required">密码不能为空</span>
+				<span class="validator-error" ng-show="signUpForm.confirm_password.$error.minlength">密码至少需要6位长度</span>
+				<span class="validator-error" ng-show="signUpForm.confirm_password.$error.pattern">密码只能由数字、字母下划线组成</span>
+				<span class="validator-error" ng-show="signUpForm.confirm_password!=signUpForm.password">两次密码不一致</span>
+			</div>
+			<div class="form-group form-button">
+				<input type="submit" value="注册" class="button button-def" ng-click="submit(v)"/>
+			</div>
+		</form>
+	</div>
+	<% include ../commons/footer.ejs %>
+	<script src="/angular/angular.min.js"></script>
+	<script src="/user/mSignUp.js"></script>
+</body>
+</html>
