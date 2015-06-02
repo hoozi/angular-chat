@@ -7,7 +7,16 @@
  */
 var signUp = angular.module('signUp', []);
 signUp.controller('signUpForm', ['$scope', function($scope){
-	
+	$scope.submitForm = function(v,event) {
+		        
+  
+		if(!v) {
+			alert("error");
+			event.preventDefault(); //标准  
+       	 	event.returnValue = false //IE  
+			return false;
+		}
+	}
 }])
 
 
