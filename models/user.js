@@ -20,6 +20,7 @@ var userSchema = new Schema({
 	password: String,
 	sex: {type: Number, default: 0}, //0 male,1 female
 	by: objectId,
+	token: String,
 	createTime: {type: Date, default: Date.now},
 	friends: [friendSchema]
 });

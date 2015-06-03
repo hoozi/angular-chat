@@ -2,24 +2,58 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>登录</title>
+	<title><%=title%></title>
+	<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
 </head>
-<body>
-	<div class="container signIn-container">
-		<form action="/user/sign_in" method="post">
-			<div class="form-group">
+<body ng-app="signIn">
+
+	<div class="col-sm-4 col-sm-offset-4">
+		<div class="page-header"><h1><%=title%></h1></div>
+		<form name="signUpForm" action="/user/signUp" method="post" ng-controller="signInForm" novalidate>
+			<div class="form-group" ng-class="{ 'has-error' : signUpForm.login_name.$invalid && !signUpForm.login_name.$pristine,'has-success': signUpForm.login_name.$valid}">
 				<label>用户名</label>
-				<input type="text" name="login_name" id="" placeholder="请输入用户名">
+				<input type="text" 
+					name="login_name" 
+					class="form-control"
+					placeholder="请输入用户名"
+					ng-model="login_name"
+					ng-trim="true"
+					ng-minlength="6"
+					ng-pattern="/[0-9a-zA-Z_]+/g"
+					required
+					autocomplete="off"/>
+				<div ng-show="!signUpForm.login_name.$pristine">
+					<p class="help-block" ng-show="signUpForm.login_name.$error.required">用户名不能为空</p>
+					<p class="help-block" ng-show="signUpForm.login_name.$error.minlength">用户名至少需要6位长度</p>
+					<p class="help-block" ng-show="signUpForm.login_name.$error.pattern">用户名只能由数字、字母下划线组成</p>
+				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group" ng-class="{ 'has-error' : signUpForm.password.$invalid && !signUpForm.password.$pristine,'has-success': signUpForm.password.$valid}">
 				<label>密码</label>
-				<input type="password" name="password" id="" placeholder="请输入密码">
+				<input 
+					type="password"
+					name="password"
+					class="form-control" 
+					placeholder="请输入密码"
+					ng-trim="true"
+					ng-model="password"
+					ng-minlength="6"
+					required/>
+				<div ng-show="!signUpForm.password.$pristine">
+					<p class="help-block" ng-show="signUpForm.password.$error.required">密码不能为空</p>
+					<p class="help-block" ng-show="signUpForm.password.$error.minlength">密码至少需要6位长度</p>
+				</div>
 			</div>
-			<div class="form-group form-button">
-				<input type="submit" value="登录" class="button button-def">
-			</div>
+			
+			<input type="submit" value="注册" class="btn btn-primary" ng-disabled="signUpForm.$invalid"/>
+			
 		</form>
+		<% include ../commons/footer.ejs %>
 	</div>
-	<% include ../commons/footer.ejs %>
+	
+	<script src="/jquery/jquery.min.js"></script>
+	<script src="/angular/angular.min.js"></script>
+	<script src="/user/validator.js"></script>
+	<script src="/user/mSignIn.js"></script>
 </body>
 </html>

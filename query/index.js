@@ -5,3 +5,4 @@
  * @date    : 2015-06-02 15:47:41
  * @version : 0.0.1
  */
+exports.user = require('./user')
