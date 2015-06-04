@@ -6,13 +6,7 @@
  * @version : 0.0.1
  */
 var signUp = angular.module("signUp", ["validator"]);
-<<<<<<< HEAD
-
-signUp.controller("signUpForm", ["$scope", "$http", function($scope, $http){
-
-=======
 signUp.controller("signUpForm", ["$scope", function($scope){
->>>>>>> origin/master
 }])
 
 
